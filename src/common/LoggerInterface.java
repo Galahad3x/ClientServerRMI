@@ -1,7 +1,9 @@
 package common;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
 
 public interface LoggerInterface extends Remote {
-    public String[] retrieveLogs(String type);
+    List<String> retrieveLogs(String type) throws RemoteException;
 }
