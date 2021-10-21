@@ -33,12 +33,17 @@ public class Server {
         Registry registry = startRegistry(null);
         ServerInt server = new ServerImpl();
         registry.rebind("server", server);
-        System.out.println("Server is available");
-        while (server.get_player_number() < 2){
-            System.out.println("There are " + server.get_player_number() + "players connected");
-            server.wait();
+        while (true) {
+            System.out.println("Server is available");
+            synchronized (server) {
+                while (server.get_player_number() < ServerImpl.NUM_PLAYERS) {
+                    System.out.println("There are " + server.get_player_number() + " players connected");
+                    server.wait();
+                }
+            }
+            System.out.println("Game is starting");
+            server.play_game();
+            System.out.println("Game is over, new game");
         }
-        System.out.println("Game is starting");
-        server.play_game();
     }
 }

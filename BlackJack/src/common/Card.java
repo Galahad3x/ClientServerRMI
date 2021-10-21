@@ -1,6 +1,8 @@
 package common;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     public Card(int number, String suit){
         this.number = number;
         this.suit = suit;

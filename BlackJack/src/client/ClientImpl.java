@@ -44,8 +44,8 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInt {
         for (Card crd : hand){
             sum += crd.number;
         }
-        if (sum >= 21){
-            System.out.println("You got too much boi");
+        if (sum > 21){
+            System.out.println("You got over 21 and lost this round");
             status = false;
         }else{
             System.out.println("You currently have " + sum);
